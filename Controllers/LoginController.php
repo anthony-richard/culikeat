@@ -1,8 +1,10 @@
 <?php
-//ne pas oublier les require
+require_once("Controllers/Controller.php");
+require_once("session.php");
+require_once("models/User.php");
 
 
-class LoginController extends Controllers  {
+class LoginController extends Controller  {
     public function index(){
           // On vérifie que si $_POST est vide
         // Si c'est le cas alors le formulaire n'a pas été validé
