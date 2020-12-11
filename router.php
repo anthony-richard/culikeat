@@ -28,7 +28,7 @@ class Router
         $this->homeController         = new HomeController();
         $this->loginController        = new LoginController();
         $this->logoutController       = new LogoutController();
-        $this->mainController         = new MainController();
+       // $this->mainController         = new MainController();
         $this->profilController       = new ProfilController();
         $this->registerController     = new RegisterController();
     }
