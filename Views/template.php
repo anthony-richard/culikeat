@@ -27,14 +27,20 @@
 </head>
 
 <body>
-  <header>
-    <nav>
-      
-    </nav>
+  <header role="banner">
+    <!-- Navbar -->
+    <?php require_once("partials/_navbarView.partial.php") ?>
+    <!-- /Navbar -->
   </header>
-
+  <!-- Main container -->
+  <main role="main" class="main-container container p-3 my-3 border">
+    <?= $content ?>
+  </main>
+  <!-- /Main container -->
   <footer>
-
+    <!-- Footer -->
+    <?php require_once("partials/_footerView.partial.php") ?>
+    <!-- /Footer -->
   </footer>
   <!-- Fichiers Javascript bootstrap-->
   <!-- jQuery and JS bundle w/ Popper.js -->
