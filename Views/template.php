@@ -21,9 +21,9 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <!-- favicon -->
-  <link rel="icon" type="image/png" alt="icon" href="../images/icone.png" />
+  <link rel="icon" type="image/png" alt="icon" href="images/icone.png" />
   <!-- link css -->
-  <link rel="stylesheet" href="../Css/style.css">
+  <link rel="stylesheet" href="Css/style.css">
 </head>
 
 <body>
@@ -33,7 +33,7 @@
     <!-- /Navbar -->
   </header>
   <!-- Main container -->
-  <main role="main" class="main-container container p-3 my-3 border">
+  <main role="main" id="main" class="main-container container p-3 my-3 border">
     <?= $content ?>
   </main>
   <!-- /Main container -->

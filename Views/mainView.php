@@ -1,21 +1,26 @@
-<img src="" alt="">
 <!-- <form>
   <div class="form-group">
     <label for="exampleFormControlFile1">Example file input</label>
     <input type="file" class="form-control-file" id="exampleFormControlFile1">
   </div>
 </form> -->
-<div class="d-flex justify-content-center">
-    <img src="" alt="">
-    <h2></h2>
-    <h3></h3>
+<img src="Images/photo.png" alt="banniere">
+<div >
+  <img src="Images/icone.png" alt="">
+    <h2>chingchong</h2>
+  <ul>
+    <li>ta fain ta soif, mange chinois</li>
+  </ul>
     <hr>
 </div>
 
-<form action="">
-    
-<div class="form-outline">
-  <input type="text" id="typeText" class="form-control" />
-  <label class="form-label" for="typeText">Text input</label>
+<div class="card">
+  <div class="card-header">
+    Message
+  </div>
+  <div class="card-body">
+  <input type="text" id="typeText" placeholder="Ecrivez un message..." class="form-control" />
+  
+    <a href="#" class="btn btn-primary d-flex justify-content-center mt-3">Envoyer</a>
+  </div>
 </div>
-</form>
