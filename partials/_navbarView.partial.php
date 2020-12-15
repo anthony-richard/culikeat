@@ -8,12 +8,15 @@
 
             <a class="nav-item nav-link" href="index.php?action=home">Accueil</a>
 
+            
+
             <?php if (sizeof($userData) > 0) : ?>
                 <a class="nav-item nav-link tab-profil" href="index.php?action=profil">
                     <?= $userData["prenom"] ?>
                     <?= $userData["nom"] ?>
                 </a>
                 <a class="nav-item nav-link" onclick="logout('index.php?action=logout')">Se déconnecter</a>
+
             <?php else : ?>
                 <a class="nav-item nav-link" href="index.php?action=login">Se connecter</a>
                 <a class="nav-item nav-link" href="index.php?action=register">S'inscrire</a>
