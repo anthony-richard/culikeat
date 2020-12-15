@@ -10,6 +10,7 @@ class RegisterController extends Controller
         if (sizeof($_POST) === 0) {
             $this->render("register", array("title" => "Page d'inscription"));
         }
+
         // sinon c'est que le formulaire a été validé
         else {
             $password = $_POST["password"];
@@ -20,51 +21,48 @@ class RegisterController extends Controller
             if ($password !== $confirm_password) {
                 $this->render("register", array("title" => "Page d'inscription", "error" => "Confirmation du mot de passe incorrect"));
             }
+
             // si la confirmation est bonne
             // on crée un new utilisateur avec ses informations
             else {
-                // on regarde si l'utilisateur est un restaurateur ou non
-                // si non on crée un new utilisateur
-                if($restaurateur = "non"){
+                // on créer un utilisateur
+                
+                $firstName = $_POST["firstName"];
+                $lastName    = $_POST["lastName"];
                 $email  = $_POST["email"];
-                $prenom = $_POST["prenom"];
-                $nom    = $_POST["nom"];
-                $restaurateur = $_POST["restaurateur"];
+                $role = $_POST["role"];
 
                 $user = new User(array(
-                    "email" => $email,
-                    "prenom" => $prenom,
-                    "nom" => $nom,
-                    "restaurateur" => $restaurateur,
-                    "mdp" => hash("sha256", $_POST["password"])
-                ));
-                }   
-                // si oui on crée un new restaurateur
-                else{
-                    $email  = $_POST["email"];
-                    $prenom = $_POST["prenom"];
-                    $nom    = $_POST["nom"];
-                    $restaurateur = $_POST["restaurateur"];
-                    $nomRestaurant = $_POST["nom_restaurant"];
-                    $adresse = $_POST["adress"];
-                    $ville = $_POST["city"];
-                    $codePostale = $_POST["zipCode"];
                     
-    
+                    "firstName" => $firstName,
+                    "lastName" => $lastName,
+                    "email" => $email,
+                    "role" => $role,
+                    "password" => hash("sha256", $_POST["password"])
+                ));
+
+            
+
+                // si restaurateur = oui, on crée un restaurateur
+                if ($role === "oui") {
+
+                    $nameRestaurant = $_POST["name_restaurant"];
+                    $address = $_POST["address"];
+                    $zipCode = $_POST["zipCode"];
+                    $city = $_POST["city"];
+
+
                     $userRestaurateur = new Restaurateur(array(
-                        "email" => $email,
-                        "prenom" => $prenom,
-                        "nom" => $nom,
-                        "restaurateur" => $restaurateur,
-                        "nom_restaurant" => $nomRestaurant ,
-                        "adress" => $adresse ,
-                        "city" => $ville,
-                        "zipCode" => $codePostale,
-                        "mdp" => hash("sha256", $_POST["password"])
+                        "name_restaurant" => $nameRestaurant,
+                        "address" => $address,
+                        "zipCode" => $zipCode,
+                        "city" => $city,
                     ));
                 }
+
+
                 // on regarde si l'utilisateur existe déja dans la bdd
-                if ($user->existInBDD()|| $userRestaurateur->existInBDD()) {
+                if ($user->existInBDD() || $userRestaurateur->existInBDD()) {
                 }
                 // on ajoute l'utilisateur à la BDD
                 else {

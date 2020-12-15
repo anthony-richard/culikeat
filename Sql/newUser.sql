@@ -1,9 +1,9 @@
 -- Id ne doit pas être précisé car il se génére tout seul
 INSERT INTO utilisateurs (
-    `prenom`,
-    `nom`,
+    `firstName`,
+    `lastName`,
     `email`,
-    `mdp`,
+    `password`,
     `role`
     )
 VALUES (

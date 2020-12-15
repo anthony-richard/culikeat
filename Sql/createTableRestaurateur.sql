@@ -1,11 +1,12 @@
 CREATE TABLE `culikeat`.`restaurateurs` (
-    `id` INT NOT NULL,
-    `nom entreprise` VARCHAR(50) NOT NULL,
-    `adresse` VARCHAR(50) NOT NULL,
-    `code postal` VARCHAR(50) NOT NULL,
-    `ville` VARCHAR(50) NOT NULL,
-    `role` INT NOT NULL DEFAULT 1,
-    PRIMARY KEY (`id`)
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `idUser` INT NOT NULL,
+    `name_restaurant` VARCHAR(50) NOT NULL,
+    `address` VARCHAR(50) NOT NULL,
+    `zipCode` VARCHAR(20) NOT NULL,
+    `city` VARCHAR(50) NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE (`name_restaurant`)
 ) ENGINE = MyISAM;
 
 
