@@ -57,7 +57,7 @@ abstract class Model extends BDD
         $textValeurs = implode("', '", $valeurs);
 
         $sql = "INSERT INTO `{$tableName}` (`{$textColonnes}`) VALUES ('{$textValeurs}')";
-        // echo "<p>$sql</p>";
+        echo "<p>$sql</p>";
 
         $this->executeRequest($sql);
         // "INSERT INTO nomDeLaTable (colonne1, colonne2, ...) VALUES (valeur_colonne1, valeur_colonne2, ...)"
@@ -152,13 +152,22 @@ abstract class Model extends BDD
     protected static function _findOneBy($tableName, $data)
     {
         $resultPDO = self::_findBy($tableName, $data);
-        return $resultPDO->fetch(PDO::FETCH_ASSOC);
+        if($resultPDO){
+            return $resultPDO->fetch(PDO::FETCH_ASSOC);
+        }else{
+            return array();
+        }
+        
     }
 
     protected static function _findAllBy($tableName, $data)
     {
         $resultPDO = self::_findBy($tableName, $data);
-        return $resultPDO->fetchAll(PDO::FETCH_ASSOC);
+        if($resultPDO){
+            return $resultPDO->fetchAll(PDO::FETCH_ASSOC);
+        }else{
+            return array();
+        }
     }
 
     public function refreshModel($tableName, $data = array())

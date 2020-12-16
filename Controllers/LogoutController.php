@@ -1,5 +1,8 @@
 <?php
 
+require_once("Controllers/controller.php");
+require_once("session.php");
+
 class LogoutController extends Controller{
     public function index(){
         

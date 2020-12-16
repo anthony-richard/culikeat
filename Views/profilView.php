@@ -3,15 +3,16 @@
     <div class="alert alert-primary" role="alert">
         Vous êtes un restaurateur !
     </div>
+
     <table class="tableProfil">
         <tbody>
             <tr>
                 <th scope="row">Prénom</th>
-                <th><?= $userData["prenom"] ?></th>
+                <th><?= $userData["firstName"] ?></th>
             </tr>
             <tr>
                 <th scope="row">Nom</th>
-                <th><?= $userData["nom"] ?></th>
+                <th><?= $userData["lastName"] ?></th>
             </tr>
             <tr>
                 <th scope="row">Email</th>
@@ -19,15 +20,15 @@
             </tr>
             <tr>
                 <th scope="row">ville</th>
-                <th><?= $userData["ville"] ?></th>
+                <th><?= $userData["city"] ?></th>
             </tr>
             <tr>
                 <th scope="row">code postal</th>
-                <th><?= $userData["codePostal"] ?></th>
+                <th><?= $userData["zipCode"] ?></th>
             </tr>
             <tr>
                 <th scope="row">nom entreprise</th>
-                <th><?= $userData["entreprise"] ?></th>
+                <th><?= $userData["name_restaurant"] ?></th>
             </tr>
 
         </tbody>
@@ -40,11 +41,11 @@
         <tbody>
             <tr>
                 <th scope="row">Prénom</th>
-                <th><?= $userData["prenom"] ?></th>
+                <th><?= $userData["firstName"] ?></th>
             </tr>
             <tr>
                 <th scope="row">Nom</th>
-                <th><?= $userData["nom"] ?></th>
+                <th><?= $userData["lastName"] ?></th>
             </tr>
             <tr>
                 <th scope="row">Email</th>

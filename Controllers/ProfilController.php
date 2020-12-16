@@ -1,9 +1,10 @@
 <?php
+require_once("Controllers/controller.php");
+require_once("session.php");
+require_once("Models/User.php");
 class ProfilController extends Controller
 {
-    public function __construct()
-    {
-    }
+    public function __construct(){}
 
     public function index()
     {
@@ -15,7 +16,20 @@ class ProfilController extends Controller
             exit;
         }
 
-        $data = array("title" => "Profil");
+        // La session est donc créée (sinon on aurait été redirigé)
+        // On peut donc la récupérer
+        $session = Session::get();
+        
+        $user = new User($session["userData"]);
+
+        $tousLesUtilisateurs = array();
+
+        // On vérifie si il est un administrateur
+        if($user->getRole() == 1) {
+            $tousLesUtilisateurs = User::getAllUsers();
+        }
+
+        $data = array("title" => "Profil", "allUsers" => $tousLesUtilisateurs);
         $this->render("profil", $data);
     }
 }

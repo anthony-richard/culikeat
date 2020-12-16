@@ -7,4 +7,7 @@ class Configuration{
     public static $nameBDD = "culikeat";
     public static $username = "root";
     public static $password = "";
+
+    // restaurateur
+    public static $IS_RESTAURATEUR = 1;
 }

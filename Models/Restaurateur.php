@@ -1,6 +1,8 @@
 <?php
 
-class User extends Models
+require_once("Models/Model.php");
+
+class Restaurateur extends Model
 {
 
     // Champs privés issus des colonnes de la BDD
@@ -12,7 +14,7 @@ class User extends Models
     private $city;
 
     // Table associée à la classe
-    private $tableName = "restaurateurs";
+    private $tableRestorer = "restaurateurs";
 
     public function __construct($data)
     {
@@ -30,7 +32,7 @@ class User extends Models
     public function connectToBDD($email, $password)
     {
         // Appelle “findBy” de “Model”
-        $resultPDO = parent::findBy($this->tableName, array("email" => $email, "password" => $password));
+        $resultPDO = parent::findBy($this->tableRestorer, array("email" => $email, "password" => $password));
         // pour récupérer toutes les données sur l’utilisateur 
         $dataToHydrate = $resultPDO->fetch(PDO::FETCH_ASSOC);
         if ($dataToHydrate) {
@@ -47,7 +49,7 @@ class User extends Models
      */
      public function existInBDD() {
         // Appelle “findBy” de “Model”
-        $resultPDO = parent::findBy($this->tableName, array("email" => $this->email));
+        $resultPDO = parent::findBy($this->tableRestorer, array("email" => $this->email));
         // pour récupérer toutes les données sur l’utilisateur associé à l’id 
         $result = $resultPDO->fetch(PDO::FETCH_ASSOC);
 
@@ -67,12 +69,12 @@ class User extends Models
     public function pushToBDD()
     {
         $data = $this->getDataArray();
-        parent::create($this->tableName, $data);
+        parent::create($this->tableRestorer, $data);
 
         // On récupére l'ID qui vient d'être généré pour cette donnée.
 
         // Appelle “findBy” de “Model”
-        $resultPDO = parent::findBy($this->tableName, array("email" => $this->email, "password" => $this->password));
+        $resultPDO = parent::findBy($this->tableRestorer, array("email" => $this->email, "password" => $this->password));
         // pour récupérer toutes les données sur l’utilisateur associé à l’id 
         $dataToHydrate = $resultPDO->fetch(PDO::FETCH_ASSOC);
 
@@ -90,7 +92,7 @@ class User extends Models
         $dataCondition = array(
             "id" => $this->id,
         );
-        parent::update($this->tableName, $data, $dataCondition);
+        parent::update($this->tableRestorer, $data, $dataCondition);
     }
 
     public function deleteFromBDD()
@@ -98,7 +100,7 @@ class User extends Models
         $dataCondition = array(
             "id" => $this->id,
         );
-        parent::delete($this->tableName, $dataCondition);
+        parent::delete($this->tableRestorer, $dataCondition);
     }
 
     public function refresh() {
@@ -148,27 +150,27 @@ class User extends Models
         return $this->id;
     }
 
-    public function getidUser()
+    public function getIdUser()
     {
         return $this->idUser;
     }
 
-    public function getname_restaurant()
+    public function getName_restaurant()
     {
         return $this->name_restaurant;
     }
 
-    public function getadress()
+    public function getAdress()
     {
         return $this->adress;
     }
 
-    public function getzipCode()
+    public function getZipCode()
     {
         return $this->zipCode;
     }
 
-    public function getcity()
+    public function getCity()
     {
         return $this->city;
     }
@@ -182,7 +184,6 @@ class User extends Models
     {
         return array(
             "email" => $this->email,
-            "password" => $this->mdp,
             "idUser" => $this->idUser,
             "name_restaurant" => $this->name_restaurant,
             "address" => $this->address,
@@ -198,7 +199,7 @@ class User extends Models
     public function getUserById($id)
     {
         // Appelle “findBy” de “Model”
-        $resultPDO = parent::findBy($this->tableName, array("id" => $id));
+        $resultPDO = parent::findBy($this->tableRestorer, array("id" => $id));
 
         // pour récupérer toutes les données sur l’utilisateur associé à l’id 
         $data = $resultPDO->fetch(PDO::FETCH_ASSOC);
@@ -208,7 +209,7 @@ class User extends Models
             $this->hydrate($data);
             return $this;
         } else {
-            echo "<p>/!\ Je n'ai pas pu récupérer l'utilisateur avec l'id : {$id}</p>";
+            echo "<p>/!\ Je n'ai pas pu récupérer le restaurateur avec l'id : {$id}</p>";
             return null;
         }
     }

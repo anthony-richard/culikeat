@@ -1,5 +1,9 @@
 <?php
 
+require_once("Controllers/Controller.php");
+require_once("session.php");
+require_once("Models/User.php");
+
 class RegisterController extends Controller
 {
     public function index()
@@ -30,7 +34,7 @@ class RegisterController extends Controller
                 $firstName = $_POST["firstName"];
                 $lastName    = $_POST["lastName"];
                 $email  = $_POST["email"];
-                $role = $_POST["role"];
+                $role = $_POST["restaurateur"];
 
                 $user = new User(array(
                     
@@ -41,7 +45,7 @@ class RegisterController extends Controller
                     "password" => hash("sha256", $_POST["password"])
                 ));
 
-            
+                $isUserRestaurateurInBDD=false;
 
                 // si restaurateur = oui, on crée un restaurateur
                 if ($role === "oui") {
@@ -58,19 +62,26 @@ class RegisterController extends Controller
                         "zipCode" => $zipCode,
                         "city" => $city,
                     ));
+                    $isUserRestaurateurInBDD = $userRestaurateur->existInBDD();
                 }
 
 
                 // on regarde si l'utilisateur existe déja dans la bdd
-                if ($user->existInBDD() || $userRestaurateur->existInBDD()) {
+                
+                if ($user->existInBDD() || $isUserRestaurateurInBDD) {
+                    
                 }
                 // on ajoute l'utilisateur à la BDD
                 else {
-                    $user->pushToBDD() || $userRestaurateur->pushToBDD();
+                    $user->pushToBDD();
+
+                    if(isset($userRestaurateur)){
+                        $userRestaurateur->pushToBDD();
+                    }
 
                     // puis on crée une session pour l'utilisateur 
                     // s'il s'inscrit, il sera forcément connecté 
-                    Session::create($user) || Session::create($restaurateur);
+                    Session::create($user);
 
                     // on le redirige vers la page d'accueil 
                     header("Location: index.php?action=profil");

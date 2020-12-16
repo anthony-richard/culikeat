@@ -1,8 +1,8 @@
 <?php
 
-require_once("Mode.php");
+require_once("Models/Model.php");
 
-class Message extends BadMethodCallException
+class Message extends Model
 {
     // champs
     private $id;
@@ -59,7 +59,7 @@ class Message extends BadMethodCallException
     }
 
     // methode qui renvoie un message en fonction d'un id
-    public static function getMessageById()
+    public static function getMessageById($id)
     {
         // Appelle “findBy” de “Model”
         $data = self::_findOneBy(self::$tableMessage, array("id" => $id));

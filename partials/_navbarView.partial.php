@@ -12,8 +12,8 @@
 
             <?php if (sizeof($userData) > 0) : ?>
                 <a class="nav-item nav-link tab-profil" href="index.php?action=profil">
-                    <?= $userData["prenom"] ?>
-                    <?= $userData["nom"] ?>
+                    <?= $userData["firstName"] ?>
+                    <?= $userData["lastName"] ?>
                 </a>
                 <a class="nav-item nav-link" onclick="logout('index.php?action=logout')">Se déconnecter</a>
 
