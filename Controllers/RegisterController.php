@@ -48,7 +48,7 @@ class RegisterController extends Controller
                 $isUserRestaurateurInBDD=false;
 
                 // si restaurateur = oui, on crée un restaurateur
-                if ($role === "oui") {
+                if ($role === "1") {
 
                     $nameRestaurant = $_POST["name_restaurant"];
                     $address = $_POST["address"];
@@ -76,7 +76,9 @@ class RegisterController extends Controller
                     $user->pushToBDD();
 
                     if(isset($userRestaurateur)){
+                        $userRestaurateur->setIdUser($user->getId());
                         $userRestaurateur->pushToBDD();
+                        var_dump($userRestaurateur);
                     }
 
                     // puis on crée une session pour l'utilisateur 
@@ -84,8 +86,11 @@ class RegisterController extends Controller
                     Session::create($user);
 
                     // on le redirige vers la page d'accueil 
-                    header("Location: index.php?action=profil");
-                    exit;
+                    // header("Location: index.php?action=profil");
+                   //exit;
+                    var_dump($user);
+                    var_dump($_POST);
+                    
                 }
             }
         }

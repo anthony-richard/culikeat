@@ -1,9 +1,11 @@
-<h1>Bienvenue sur votre profil</h1>
-<?php if (isRestaurateur($userData)) : ?>
+<?php 
+require_once("helpers.php");
+if (isRestaurateur($userData)): ?>
     <div class="alert alert-primary" role="alert">
         Vous êtes un restaurateur !
     </div>
 
+<h1>Votre profil contient :</h1>
     <table class="tableProfil">
         <tbody>
             <tr>
@@ -20,15 +22,15 @@
             </tr>
             <tr>
                 <th scope="row">ville</th>
-                <th><?= $userData["city"] ?></th>
+                <th><?= $restaurateurData["city"] ?></th>
             </tr>
             <tr>
                 <th scope="row">code postal</th>
-                <th><?= $userData["zipCode"] ?></th>
+                <th><?= $restaurateurData["zipCode"] ?></th>
             </tr>
             <tr>
                 <th scope="row">nom entreprise</th>
-                <th><?= $userData["name_restaurant"] ?></th>
+                <th><?= $restaurateurData["name_restaurant"] ?></th>
             </tr>
 
         </tbody>

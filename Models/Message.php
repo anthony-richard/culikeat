@@ -8,7 +8,7 @@ class Message extends Model
     private $id;
     private $post;
 
-    public static $tableMessage = "messages";
+    public static $tableName = "messages";
 
     public function __construct($data = array())
     {
@@ -62,7 +62,7 @@ class Message extends Model
     public static function getMessageById($id)
     {
         // Appelle “findBy” de “Model”
-        $data = self::_findOneBy(self::$tableMessage, array("id" => $id));
+        $data = self::_findOneBy(self::$tableName, array("idUser"=> $id));
 
         if ($data) {
             // On crée un message à partir des données
@@ -78,7 +78,7 @@ class Message extends Model
     public static function getAllMessages()
     {
         // Appelle “findBy” de “Model”
-        $data = self::_findAllBy(self::$tableMessage, array());
+        $data = self::_findAllBy(self::$tableName, array());
 
         if ($data) {
             // On renvoie tous les messages trouvés

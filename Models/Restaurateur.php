@@ -9,12 +9,12 @@ class Restaurateur extends Model
     private $id;
     private $idUser;
     private $name_restaurant;
-    private $adress;
+    private $address;
     private $zipCode;
     private $city;
 
     // Table associée à la classe
-    private $tableRestorer = "restaurateurs";
+   public static $tableName = "restaurateurs";
 
     public function __construct($data)
     {
@@ -25,31 +25,12 @@ class Restaurateur extends Model
     /* ----------------------------------------------
         Utils : Méthodes utiles
     -------------------------------------------------*/
-
-    /**
-     * On se connecte à la BDD
-     */
-    public function connectToBDD($email, $password)
-    {
-        // Appelle “findBy” de “Model”
-        $resultPDO = parent::findBy($this->tableRestorer, array("email" => $email, "password" => $password));
-        // pour récupérer toutes les données sur l’utilisateur 
-        $dataToHydrate = $resultPDO->fetch(PDO::FETCH_ASSOC);
-        if ($dataToHydrate) {
-            $this->hydrate($dataToHydrate);
-            return true;
-        } else {
-            echo "/ ! \ Utilisateur introuvable ou identifiant invalide";
-            return false;
-        }
-    }
-
     /**
      * On vérifie si l'utilisateur associé à l'adresse email de l'instance existe dans la BDD
      */
      public function existInBDD() {
         // Appelle “findBy” de “Model”
-        $resultPDO = parent::findBy($this->tableRestorer, array("email" => $this->email));
+        $resultPDO = parent::findBy(self::$tableName, array("idUser" => $this->idUser));
         // pour récupérer toutes les données sur l’utilisateur associé à l’id 
         $result = $resultPDO->fetch(PDO::FETCH_ASSOC);
 
@@ -63,49 +44,7 @@ class Restaurateur extends Model
         }
      }
 
-    /**
-     * On ajoute les données de l'instance dans la table associé de la BDD
-     */
-    public function pushToBDD()
-    {
-        $data = $this->getDataArray();
-        parent::create($this->tableRestorer, $data);
-
-        // On récupére l'ID qui vient d'être généré pour cette donnée.
-
-        // Appelle “findBy” de “Model”
-        $resultPDO = parent::findBy($this->tableRestorer, array("email" => $this->email, "password" => $this->password));
-        // pour récupérer toutes les données sur l’utilisateur associé à l’id 
-        $dataToHydrate = $resultPDO->fetch(PDO::FETCH_ASSOC);
-
-        // $resultPDO vaut false si la requête n'a pas récupéré de ligne
-        if ($resultPDO) {
-            $this->hydrate($dataToHydrate);
-        } else {
-            echo "/ ! \ Utilisateur introuvable";
-        }
-    }
-
-    public function updateInBDD()
-    {
-        $data = $this->getDataArray();
-        $dataCondition = array(
-            "id" => $this->id,
-        );
-        parent::update($this->tableRestorer, $data, $dataCondition);
-    }
-
-    public function deleteFromBDD()
-    {
-        $dataCondition = array(
-            "id" => $this->id,
-        );
-        parent::delete($this->tableRestorer, $dataCondition);
-    }
-
-    public function refresh() {
-
-    }
+    
 
     /* ----------------------------------------------
         Setters
@@ -116,27 +55,27 @@ class Restaurateur extends Model
         $this->id = $id;
     }
 
-    public function setidUser($idUser)
+    public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
     }
 
-    public function setRetorer($name_restaurant)
+    public function setName_restaurant($name_restaurant)
     {
         $this->name_restaurant = $name_restaurant;
     }
 
-    public function setPrenom($address)
+    public function setAddress($address)
     {
         $this->address = $address;
     }
 
-    public function setNom($zipCode)
+    public function setZipCode($zipCode)
     {
         $this->zipCode = $zipCode;
     }
 
-    public function setRole($city)
+    public function setCity($city)
     {
         $this->city = $city;
     }
@@ -183,7 +122,6 @@ class Restaurateur extends Model
     public function getDataArray()
     {
         return array(
-            "email" => $this->email,
             "idUser" => $this->idUser,
             "name_restaurant" => $this->name_restaurant,
             "address" => $this->address,
@@ -196,21 +134,31 @@ class Restaurateur extends Model
      * Met à jour les setters associés aux clés de data
      * @param Integer $id - Id de l'utilisateur dans la base de données
      */
-    public function getUserById($id)
+    public static function getRestaurateurByUserId($id)
     {
         // Appelle “findBy” de “Model”
-        $resultPDO = parent::findBy($this->tableRestorer, array("id" => $id));
-
-        // pour récupérer toutes les données sur l’utilisateur associé à l’id 
-        $data = $resultPDO->fetch(PDO::FETCH_ASSOC);
-
+        $data = self::_findOneBy(self::$tableName, array("idUser" => $id));
+        
         if ($data) {
             // On crée un utilisateur à partir des données
-            $this->hydrate($data);
-            return $this;
+         $restaurateur = new Restaurateur($data);
+            return $restaurateur;
         } else {
             echo "<p>/!\ Je n'ai pas pu récupérer le restaurateur avec l'id : {$id}</p>";
             return null;
+        }
+    }
+    public static function getAllRestaurateur()
+    {
+        // Appelle “findBy” de “Model”
+        $data = self::_findAllBy(self::$tableName, array());
+
+        if ($data) {
+            // On renvoie tous les utilisateurs trouvés
+            return $data;
+        } else {
+            echo "<p>/!\ Je n'ai pas pu récupérer de restaurateur</p>";
+            return array();
         }
     }
 }

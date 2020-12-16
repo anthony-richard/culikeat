@@ -1,8 +1,8 @@
-<?
+<?php
 require_once("Configuration.php");
 
  
 function isRestaurateur($userData)
 {
-    return ($userData["role"] === Configuration::$IS_RESTAURATEUR);
+    return ($userData["role"] == Configuration::$IS_RESTAURATEUR);
 }

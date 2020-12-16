@@ -4,6 +4,7 @@ require_once("Controllers/controller.php");
 require_once("session.php");
 
 class LogoutController extends Controller{
+    public function __construct() {}
     public function index(){
         
         // quand l'utilisateur se déconnecte on doit détruire la session

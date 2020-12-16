@@ -1,5 +1,5 @@
 -- Id doit être précisé car il vient de l'utilisateur
-INSERT INTO restaurateurs (
+INSERT INTO `restaurateurs` (
     `idUser`,
     `name_restaurant`,
     `address`,

@@ -85,12 +85,12 @@ class User extends Model
 
     public function setFirstName($firstName)
     {
-        $this->prenom = $firstName;
+        $this->firstName = $firstName;
     }
 
     public function setLastName($lastName)
     {
-        $this->nom = $lastName;
+        $this->lastName = $lastName;
     }
 
     public function setRole($role)
@@ -152,18 +152,18 @@ class User extends Model
      * Met à jour les setters associés aux clés de data
      * @param Integer $id - Id de l'utilisateur dans la base de données
      */
-    public function getUserById($id)
+    public static function getUserById($id)
     {
         // Appelle “findBy” de “Model”
-        $resultPDO = parent::findBy(self::$tableName, array("id" => $id));
+        $resultPDO = self::_findOneBy(self::$tableName, array("id" => $id));
 
         // pour récupérer toutes les données sur l’utilisateur associé à l’id 
         $data = $resultPDO->fetch(PDO::FETCH_ASSOC);
 
         if ($data) {
             // On crée un utilisateur à partir des données
-            $this->hydrate($data);
-            return $this;
+            $user = new User($data);
+            return $user;
         } else {
             echo "<p>/!\ Je n'ai pas pu récupérer l'utilisateur avec l'id : {$id}</p>";
             return null;

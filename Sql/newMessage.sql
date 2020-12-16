@@ -1,5 +1,5 @@
 -- Id ne doit pas être précisé car il se génére tout seul
-INSERT INTO messages (
+INSERT INTO `messages` (
     `post`
     )
 VALUES (

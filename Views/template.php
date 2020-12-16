@@ -24,6 +24,7 @@
   <link rel="icon" type="image/png" alt="icon" href="images/icone.png" />
   <!-- link css -->
   <link rel="stylesheet" href="Css/style.css">
+  <script type="text/javascript" src="Js/logout.js"></script>
 </head>
 
 <body>
