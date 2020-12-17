@@ -85,7 +85,7 @@ class RegisterController extends Controller
                     // s'il s'inscrit, il sera forcément connecté 
                     Session::create($user);
 
-                    // on le redirige vers la page d'accueil 
+                    // on le redirige vers la page de profil
                       header("Location: index.php?action=profil");
                     exit;
                     //  var_dump($user);
