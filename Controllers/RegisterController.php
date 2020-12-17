@@ -86,10 +86,10 @@ class RegisterController extends Controller
                     Session::create($user);
 
                     // on le redirige vers la page d'accueil 
-                    // header("Location: index.php?action=profil");
-                   //exit;
-                    var_dump($user);
-                    var_dump($_POST);
+                      header("Location: index.php?action=profil");
+                    exit;
+                    //  var_dump($user);
+                    //  var_dump($_POST);
                     
                 }
             }

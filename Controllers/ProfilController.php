@@ -26,6 +26,7 @@ class ProfilController extends Controller
         $restaurateur = Restaurateur::getRestaurateurByUserId($user->getId());
         $restaurateurdata = $restaurateur->getDataArray();
         $tousLesUtilisateurs = array();
+        
 
         // On vérifie si il est un administrateur
         if($user->getRole() == 1) {
