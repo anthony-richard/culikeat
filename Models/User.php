@@ -155,10 +155,7 @@ class User extends Model
     public static function getUserById($id)
     {
         // Appelle “findBy” de “Model”
-        $resultPDO = self::_findOneBy(self::$tableName, array("id" => $id));
-
-        // pour récupérer toutes les données sur l’utilisateur associé à l’id 
-        $data = $resultPDO->fetch(PDO::FETCH_ASSOC);
+        $data = self::_findOneBy(self::$tableName, array("id" => $id));
 
         if ($data) {
             // On crée un utilisateur à partir des données

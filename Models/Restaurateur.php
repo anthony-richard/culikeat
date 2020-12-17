@@ -161,4 +161,25 @@ class Restaurateur extends Model
             return array();
         }
     }
+
+    
+    /**
+     * Met à jour les setters associés aux clés de data
+     * @param Integer $id - Id de  restaurateur dans la base de données
+     */
+    public static function getRestaurateurById($id)
+    {
+        // Appelle “findBy” de “Model”
+        $data = self::_findOneBy(self::$tableName, array("id" => $id));
+
+        if ($data) {
+            // On crée un restaurateur à partir des données
+            $restaurateur = new Restaurateur($data);
+            return $restaurateur;
+        } else {
+            echo "<p>/!\ Je n'ai pas pu récupérer le restaurateur avec l'id : {$id}</p>";
+            return null;
+        }
+    }
+
 }

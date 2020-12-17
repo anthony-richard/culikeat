@@ -7,7 +7,7 @@
 <img src="Images/photo.png" alt="banniere">
 <div >
   <img src="Images/icone.png" alt="">
-    <h2>chingchong</h2>
+    <h2><?= $restaurateurData["name_restaurant"]?></h2>
   <ul>
     <li>ta fain ta soif, mange chinois</li>
   </ul>
