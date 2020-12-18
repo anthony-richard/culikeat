@@ -9,10 +9,8 @@ class HomeController extends Controller {
 
     public function index() {
         
-        //getAllRestaurant
+        
         $allRestaurateur = Restaurateur::getAllRestaurateur();
-        // $session = Session::get();
-        // $user = new User($session["userData"]);
         $allpostRestaurateur = array();
         var_dump($allRestaurateur);
        //$allpostRestaurateur = $idRestaurant ->getDataArray();

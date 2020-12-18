@@ -24,3 +24,11 @@
     <a href="#" class="btn btn-primary d-flex justify-content-center mt-3">Envoyer</a>
   </div>
 </div>
+<?php foreach ($allMessages as $key => $MessageInfo) : ?>
+<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header"><?= $restaurateurData["name_restaurant"]?></div>
+  <div class="card-body">
+    <h5 class="card-title"><?= $MessageInfo["post"]?></h5>
+  </div>
+</div>
+<?php endforeach ?>
